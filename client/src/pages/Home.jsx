@@ -5,8 +5,8 @@ import { io } from "socket.io-client";
 import { 
   LogOut, Settings, Plus, MapPin, MessageCircle, Trash2, X, Heart, Send 
 } from "lucide-react";
-// ✅ NEW: Import the AI Bot
-import AiBot from "../components/aibot";
+// ✅ FIXED: Capitalized "AiBot" so Vercel can find the file
+import AiBot from "../components/AiBot";
 
 export default function Home() {
   const { user, logout, onlineUsers } = useContext(AuthContext);
