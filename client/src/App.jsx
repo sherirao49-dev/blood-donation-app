@@ -1,33 +1,27 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { AuthProvider } from "./context/AuthContext";
+import PrivateRoute from "./components/PrivateRoute";
 
-// Components
-import Navbar from "./components/Navbar"; 
-import AiBot from "./components/AiBot";
+// Pages
+import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Home from "./pages/Home";
-import Chat from "./pages/Chat"; // IMPORT CHAT
+import Settings from "./pages/Settings"; 
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <ToastContainer position="top-right" />
-        
-        <Navbar /> 
-        <AiBot /> 
-
+    <Router>  {/* ✅ ROUTER MUST BE ON THE OUTSIDE */}
+      <AuthProvider> {/* ✅ AuthProvider is now INSIDE the Router */}
         <Routes>
-          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/chat/:roomId" element={<Chat />} /> {/* NEW ROUTE */}
+          
+          {/* Protected Routes */}
+          <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
+          <Route path="/settings" element={<PrivateRoute><Settings /></PrivateRoute>} />
         </Routes>
-      </Router>
-    </AuthProvider>
+      </AuthProvider>
+    </Router>
   );
 }
 

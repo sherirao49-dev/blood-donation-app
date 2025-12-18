@@ -1,58 +1,66 @@
 import { Link } from "react-router-dom";
-import { Heart, Activity, ShieldCheck } from "lucide-react";
-import { motion } from "framer-motion";
+import { ArrowRight, Heart } from "lucide-react";
 
 export default function Landing() {
   return (
-    <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <div className="container mx-auto px-6 py-20 flex flex-col md:flex-row items-center">
-        
-        {/* Left Text */}
-        <motion.div 
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          className="md:w-1/2"
-        >
-          <h1 className="text-5xl font-bold text-gray-900 leading-tight">
-            Save a Life, <br />
-            <span className="text-red-600">Be a Hero.</span>
-          </h1>
-          <p className="mt-6 text-gray-600 text-lg">
-            LifeFlow connects generous donors with patients in urgent need. 
-            Join our community and make a difference today.
-          </p>
-          <div className="mt-8 flex gap-4">
-            <Link to="/register" className="bg-red-600 text-white px-8 py-3 rounded-full text-lg font-semibold shadow-lg hover:bg-red-700 transition transform hover:scale-105">
-              Get Started
-            </Link>
-            <Link to="/login" className="border-2 border-red-600 text-red-600 px-8 py-3 rounded-full text-lg font-semibold hover:bg-red-50 transition">
-              Login
-            </Link>
+    <div className="min-h-screen flex bg-white">
+      
+      {/* LEFT SIDE: Text & Buttons */}
+      <div className="w-full md:w-1/2 flex flex-col justify-center p-12 md:p-24 relative">
+        {/* Logo */}
+        <div className="absolute top-8 left-12 flex items-center gap-2">
+          <div className="bg-red-600 text-white p-2 rounded-full">
+            <Heart size={20} fill="white" />
           </div>
-        </motion.div>
+          <span className="text-2xl font-bold text-gray-800">LifeFlow</span>
+        </div>
 
-        {/* Right Illustration */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }}
-          className="md:w-1/2 mt-12 md:mt-0 flex justify-center"
-        >
-          <div className="relative w-96 h-96 bg-red-100 rounded-full flex items-center justify-center shadow-2xl animate-pulse">
-            <Heart size={150} className="text-red-600 drop-shadow-md" fill="currentColor" />
-            <div className="absolute -top-4 -right-4 bg-white p-4 rounded-xl shadow-lg flex items-center gap-2">
-              <Activity className="text-green-500" />
-              <span className="font-bold text-gray-700">Urgent Requests</span>
-            </div>
-            <div className="absolute -bottom-4 -left-4 bg-white p-4 rounded-xl shadow-lg flex items-center gap-2">
-              <ShieldCheck className="text-blue-500" />
-              <span className="font-bold text-gray-700">Verified Donors</span>
-            </div>
+        <div className="max-w-lg">
+          <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
+            Give Blood, <br />
+            <span className="text-red-600">Share Life.</span>
+          </h1>
+          
+          <p className="text-lg text-gray-600 mb-10 leading-relaxed">
+            Become a donor and be a hero in someone's story. 
+            Join our community today and help save lives with just one click.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Link 
+              to="/login" 
+              className="px-8 py-4 bg-red-600 text-white text-lg font-bold rounded-full hover:bg-red-700 transition shadow-lg shadow-red-200 flex items-center justify-center gap-2"
+            >
+              Login <ArrowRight size={20} />
+            </Link>
+            
+            <Link 
+              to="/register" 
+              className="px-8 py-4 bg-white text-red-600 border-2 border-red-100 text-lg font-bold rounded-full hover:bg-red-50 transition flex items-center justify-center"
+            >
+              Register
+            </Link>
           </div>
-        </motion.div>
+        </div>
+
+        {/* Footer Text */}
+        <p className="absolute bottom-8 left-12 text-sm text-gray-400">
+          © 2025 LifeFlow Inc.
+        </p>
       </div>
+
+      {/* RIGHT SIDE: High Quality "Hope" Image */}
+      <div className="hidden md:block w-1/2 bg-red-50 relative overflow-hidden">
+        <img 
+          // ✅ This image shows hands holding a heart (Unity & Hope)
+          src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=2670&auto=format&fit=crop" 
+          alt="Community giving hope" 
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        {/* Soft overlay to blend it nicely */}
+        <div className="absolute inset-0 bg-gradient-to-t from-red-900/20 to-transparent"></div>
+      </div>
+
     </div>
   );
 }
